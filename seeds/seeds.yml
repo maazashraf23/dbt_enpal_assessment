@@ -1,0 +1,35 @@
+version: 2
+
+seeds:
+  - name: funnel_stage_mapping
+    description: Mapping of Pipedrive stage names to funnel steps and KPI names.
+    columns:
+      - name: stage_name
+        description: "{{ doc('stage_name') }}"
+        tests:
+          - not_null
+          - unique
+      - name: funnel_step
+        description: "{{ doc('funnel_step') }}"
+        tests:
+          - not_null
+      - name: kpi_name
+        description: "{{ doc('kpi_name') }}"
+        tests:
+          - not_null
+  - name: funnel_activity_mapping
+    description: Mapping of activity type names to funnel sub-steps and KPI names.
+    columns:
+      - name: activity_type_name
+        description: "{{ doc('activity_type_name') }}"
+        tests:
+          - not_null
+          - unique
+      - name: funnel_step
+        description: "{{ doc('funnel_step') }}"
+        tests:
+          - not_null
+      - name: kpi_name
+        description: "{{ doc('kpi_name') }}"
+        tests:
+          - not_null

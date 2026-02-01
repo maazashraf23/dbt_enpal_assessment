@@ -1,0 +1,13 @@
+version: 2
+
+exposures:
+  - name: exp_sales_funnel_monthly
+    type: dashboard
+    maturity: medium
+    url: https://example.com/sales-funnel
+    description: Monthly sales funnel KPI dashboard powered by rep_sales_funnel_monthly.
+    depends_on:
+      - ref('rep_sales_funnel_monthly')
+    owner:
+      name: Analytics Team
+      email: analytics@example.com

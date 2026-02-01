@@ -1,0 +1,102 @@
+version: 2
+
+models:
+  - name: stg_pipedrive_activity
+    description: >
+      Staging model for Pipedrive CRM activities. Contains one record per activity,
+      with standardized column names and types for downstream analytics.
+    columns:
+      - name: activity_id
+        description: "{{ doc('activity_id') }}"
+        tests:
+          - not_null
+      - name: activity_type_key
+        description: "{{ doc('activity_type_key') }}"
+      - name: assigned_to_user_id
+        description: "{{ doc('assigned_to_user_id') }}"
+      - name: deal_id
+        description: "{{ doc('deal_id') }}"
+      - name: is_done
+        description: "{{ doc('is_done') }}"
+      - name: due_at
+        description: "{{ doc('due_at') }}"
+
+  - name: stg_pipedrive_activity_types
+    description: >
+      Staging model for activity type metadata in Pipedrive. Contains one record per
+      activity type configuration.
+    columns:
+      - name: activity_type_id
+        description: "{{ doc('activity_type_id') }}"
+        tests:
+          - not_null
+          - unique
+      - name: activity_type_name
+        description: "{{ doc('activity_type_name') }}"
+      - name: is_active
+        description: "{{ doc('is_active') }}"
+      - name: activity_type_key
+        description: "{{ doc('activity_type_key') }}"
+
+  - name: stg_pipedrive_deal_changes
+    description: >
+      Staging model for changes applied to deals in Pipedrive. One record per field
+      change event.
+    columns:
+      - name: deal_id
+        description: "{{ doc('deal_id') }}"
+        tests:
+          - not_null
+      - name: changed_at
+        description: "{{ doc('changed_at') }}"
+      - name: changed_field_key
+        description: "{{ doc('changed_field_key') }}"
+      - name: new_value
+        description: "{{ doc('new_value') }}"
+
+  - name: stg_pipedrive_fields
+    description: >
+      Staging model for Pipedrive custom and system fields. One record per field
+      definition.
+    columns:
+      - name: field_id
+        description: "{{ doc('field_id') }}"
+        tests:
+          - not_null
+          - unique
+      - name: field_key
+        description: "{{ doc('field_key') }}"
+      - name: field_name
+        description: "{{ doc('field_name') }}"
+      - name: field_value_options
+        description: "{{ doc('field_value_options') }}"
+
+  - name: stg_pipedrive_stages
+    description: >
+      Staging model for deal pipeline stages in Pipedrive. One record per stage.
+    columns:
+      - name: stage_id
+        description: "{{ doc('stage_id') }}"
+        tests:
+          - not_null
+          - unique
+      - name: stage_name
+        description: "{{ doc('stage_name') }}"
+
+  - name: stg_pipedrive_users
+    description: >
+      Staging model for Pipedrive users. One record per user account.
+    columns:
+      - name: user_id
+        description: "{{ doc('user_id') }}"
+        tests:
+          - not_null
+          - unique
+      - name: user_name
+        description: "{{ doc('user_name') }}"
+      - name: email
+        description: "{{ doc('email') }}"
+      - name: modified_at
+        description: "{{ doc('modified_at') }}"
+
+

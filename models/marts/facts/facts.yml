@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: fct_deal_stage_firsts
+    description: >
+      Fact table for the first time each deal entered a given stage.
+    columns:
+      - name: deal_id
+        description: "{{ doc('deal_id') }}"
+        tests:
+          - not_null
+      - name: stage_id
+        description: "{{ doc('stage_id') }}"
+        tests:
+          - relationships:
+              to: ref('dim_stage')
+              field: stage_id
+      - name: stage_entered_at
+        description: "{{ doc('stage_entered_at') }}"
+        tests:
+          - not_null
+  - name: fct_deal_sales_calls
+    description: >
+      Fact table for the first completed sales call per deal and call type.
+    columns:
+      - name: deal_id
+        description: "{{ doc('deal_id') }}"
+        tests:
+          - not_null
+      - name: activity_type_name
+        description: "{{ doc('activity_type_name') }}"
+        tests:
+          - relationships:
+              to: ref('dim_activity_type')
+              field: activity_type_name
+      - name: first_call_at
+        description: "{{ doc('first_call_at') }}"
+        tests:
+          - not_null
+

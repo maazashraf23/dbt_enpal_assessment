@@ -1,0 +1,98 @@
+version: 2
+
+sources:
+  - name: postgres_public
+    database: postgres
+    schema: public
+    description: Raw Pipedrive CRM extracts loaded into Postgres.
+    tables:
+      - name: activity
+        description: Activities logged against deals (calls, meetings, follow-ups).
+        columns:
+          - name: activity_id
+            description: "{{ doc('activity_id') }}"
+            tests:
+              - not_null
+          - name: type
+            description: "{{ doc('activity_type_key') }}"
+          - name: assigned_to_user
+            description: "{{ doc('assigned_to_user_id') }}"
+          - name: deal_id
+            description: "{{ doc('deal_id') }}"
+          - name: done
+            description: "{{ doc('is_done') }}"
+          - name: due_to
+            description: "{{ doc('due_at') }}"
+      - name: activity_types
+        description: Reference list of activity types configured in Pipedrive.
+        columns:
+          - name: id
+            description: "{{ doc('activity_type_id') }}"
+            tests:
+              - not_null
+              - unique
+          - name: name
+            description: "{{ doc('activity_type_name') }}"
+          - name: active
+            description: "{{ doc('is_active') }}"
+          - name: type
+            description: "{{ doc('activity_type_key') }}"
+      - name: deal_changes
+        description: Audit log of deal field changes over time.
+        columns:
+          - name: deal_id
+            description: "{{ doc('deal_id') }}"
+            tests:
+              - not_null
+          - name: change_time
+            description: "{{ doc('changed_at') }}"
+            tests:
+              - not_null
+          - name: changed_field_key
+            description: "{{ doc('changed_field_key') }}"
+            tests:
+              - not_null
+          - name: new_value
+            description: "{{ doc('new_value') }}"
+      - name: fields
+        description: Pipedrive field definitions and option values.
+        columns:
+          - name: id
+            description: "{{ doc('field_id') }}"
+            tests:
+              - not_null
+              - unique
+          - name: field_key
+            description: "{{ doc('field_key') }}"
+            tests:
+              - not_null
+          - name: name
+            description: "{{ doc('field_name') }}"
+          - name: field_value_options
+            description: "{{ doc('field_value_options') }}"
+      - name: stages
+        description: Deal pipeline stages with display names.
+        columns:
+          - name: stage_id
+            description: "{{ doc('stage_id') }}"
+            tests:
+              - not_null
+              - unique
+          - name: stage_name
+            description: "{{ doc('stage_name') }}"
+            tests:
+              - not_null
+      - name: users
+        description: Pipedrive users who own deals or activities.
+        columns:
+          - name: id
+            description: "{{ doc('user_id') }}"
+            tests:
+              - not_null
+              - unique
+          - name: name
+            description: "{{ doc('user_name') }}"
+          - name: email
+            description: "{{ doc('email') }}"
+          - name: modified_at
+            description: "{{ doc('modified_at') }}"

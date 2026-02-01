@@ -1,0 +1,10 @@
+stage_name,funnel_step,kpi_name
+Lead Generation,1,Lead Generation
+Qualified Lead,2,Qualified Lead
+Needs Assessment,3,Needs Assessment
+Proposal/Quote Preparation,4,Proposal/Quote Preparation
+Negotiation,5,Negotiation
+Closing,6,Closing
+Implementation/Onboarding,7,Implementation/Onboarding
+Follow-up/Customer Success,8,Follow-up/Customer Success
+Renewal/Expansion,9,Renewal/Expansion

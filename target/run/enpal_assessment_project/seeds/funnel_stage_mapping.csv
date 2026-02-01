@@ -1,0 +1,12 @@
+
+    
+    
+    truncate table "postgres"."pipedrive_analytics_pipedrive_analytics"."funnel_stage_mapping";
+    -- dbt seed --
+    
+          insert into "postgres"."pipedrive_analytics_pipedrive_analytics"."funnel_stage_mapping" ("stage_name", "funnel_step", "kpi_name") values
+          (%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s)
+      
+
+;
+  

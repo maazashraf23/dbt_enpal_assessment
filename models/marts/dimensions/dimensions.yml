@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: >
+      Monthly date spine used for consistent month-end reporting buckets.
+    columns:
+      - name: month_start
+        description: "{{ doc('month_start') }}"
+        tests:
+          - not_null
+          - unique
+      - name: month_end
+        description: "{{ doc('month_end') }}"
+        tests:
+          - not_null
+          - unique
+  - name: dim_stage
+    description: >
+      Stage dimension with standardized funnel step mapping.
+    columns:
+      - name: stage_id
+        description: "{{ doc('stage_id') }}"
+        tests:
+          - not_null
+          - unique
+      - name: stage_name
+        description: "{{ doc('stage_name') }}"
+      - name: funnel_step
+        description: "{{ doc('funnel_step') }}"
+        tests:
+          - not_null
+      - name: kpi_name
+        description: "{{ doc('kpi_name') }}"
+        tests:
+          - not_null
+  - name: dim_activity_type
+    description: >
+      Activity type dimension with funnel sub-step mapping for Sales Calls.
+    columns:
+      - name: activity_type_id
+        description: "{{ doc('activity_type_id') }}"
+        tests:
+          - not_null
+          - unique
+      - name: activity_type_name
+        description: "{{ doc('activity_type_name') }}"
+        tests:
+          - not_null
+      - name: is_active
+        description: "{{ doc('is_active') }}"
+      - name: activity_type
+        description: "{{ doc('activity_type_key') }}"
+      - name: funnel_step
+        description: "{{ doc('funnel_step') }}"
+        tests:
+          - not_null:
+              config:
+                where: "activity_type_name in ('Sales Call 1','Sales Call 2')"
+      - name: kpi_name
+        description: "{{ doc('kpi_name') }}"
+        tests:
+          - not_null:
+              config:
+                where: "activity_type_name in ('Sales Call 1','Sales Call 2')"
+
+
