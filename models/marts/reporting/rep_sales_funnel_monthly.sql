@@ -1,10 +1,4 @@
-{{ config(
-    indexes=[
-        {'columns': ['month']},
-        {'columns': ['funnel_step']},
-        {'columns': ['kpi_name']}
-    ]
-) }}
+
 
 -- Monthly sales funnel KPI counts with complete month coverage and month-end dates.
 with dim_date as (
@@ -132,6 +126,12 @@ order by
         when '9' then 11
         else 99
     end
+
+
+SELECT * FROM public_pipedrive_analytics.rep_sales_funnel_monthly
+WHERE month='2024-01'
+ORDER BY funnel_step, deals_count;
+
 
 
 

@@ -8,9 +8,7 @@
     as
   
   (
-    
-
--- Monthly sales funnel KPI counts with complete month coverage and month-end dates.
+    -- Monthly sales funnel KPI counts with complete month coverage and month-end dates.
 with dim_date as (
     select
         month_start,
