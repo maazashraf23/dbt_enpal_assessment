@@ -8,9 +8,7 @@
     as
   
   (
-    
-
--- One row per deal and stage for the first entry timestamp.
+    -- One row per deal and stage for the first entry timestamp.
 select
     deal_id,
     stage_id,

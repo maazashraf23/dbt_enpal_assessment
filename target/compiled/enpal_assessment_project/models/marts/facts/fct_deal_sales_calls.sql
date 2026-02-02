@@ -1,5 +1,3 @@
-
-
 -- One row per deal and sales call type for the first completed call timestamp.
 select
     deal_id,

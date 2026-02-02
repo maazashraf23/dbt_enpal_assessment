@@ -1,10 +1,4 @@
-{{ config(
-    indexes=[
-        {'columns': ['deal_id']},
-        {'columns': ['stage_id']},
-        {'columns': ['stage_entered_at']}
-    ]
-) }}
+
 
 -- One row per deal and stage for the first entry timestamp.
 select

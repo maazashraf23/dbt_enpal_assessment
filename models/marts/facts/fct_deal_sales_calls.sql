@@ -1,10 +1,3 @@
-{{ config(
-    indexes=[
-        {'columns': ['deal_id']},
-        {'columns': ['activity_type_name']},
-        {'columns': ['first_call_at']}
-    ]
-) }}
 
 -- One row per deal and sales call type for the first completed call timestamp.
 select

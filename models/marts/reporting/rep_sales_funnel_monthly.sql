@@ -128,9 +128,6 @@ order by
     end
 
 
-SELECT * FROM public_pipedrive_analytics.rep_sales_funnel_monthly
-WHERE month='2024-01'
-ORDER BY funnel_step, deals_count;
 
 
 

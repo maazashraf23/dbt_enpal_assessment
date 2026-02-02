@@ -1,5 +1,3 @@
-
-
 -- One row per deal and stage for the first entry timestamp.
 select
     deal_id,
